@@ -9,7 +9,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 pickle_in = open("Risheek.pkl","rb")
 model=pickle.load(pickle_in)
 dataset= pd.read_csv('Risheek Mittal - Classification Dataset1.csv')
-X = dataset.iloc[:,0:14].values
+X = dataset.iloc[:,1:10].values
 
 # Taking care of missing data
 #handling missing data (Replacing missing data with the mean value)  
@@ -50,11 +50,9 @@ X = sc.fit_transform(X)
 def predict_note_authentication(CreditScore,Geography,Gender,Age,Tenure,Balance,HasCrCard,IsActiveMember,EstimatedSalary):
   output= model.predict(sc.transform([[CreditScore,Geography,Gender,Age,Tenure,Balance,HasCrCard,IsActiveMember,EstimatedSalary]]))
   print("Leaving Chances",output)
-  if output==[0]:
-    prediction="Will Exit"
-   
-
   if output==[1]:
+    prediction="Will Exit"
+  else:
     prediction="Won't Exit"
     
     
@@ -74,7 +72,7 @@ def main():
    </div>
    """
     st.markdown(html_temp,unsafe_allow_html=True)
-    st.header("Item Purchase Prediction")
+    st.header("Leaving Chance Prediction")
     CreditScore = st.number_input('Insert a Credit Score',0,1000)
     Geography = st.number_input('Insert a Geography',0,1)
     Gender = st.number_input('Insert a Gender',0,1)
@@ -87,7 +85,7 @@ def main():
     
     resul=""
     if st.button("Predict"):
-      result=predict_note_authentication(age,cp,trestbps,chol,fbs,Gender,Geography,restecg,thalach,exang,oldpeak,slope,ca,thal)
+      result=predict_note_authentication(CreditScore,Geography,Gender,Age,Tenure,Balance,HasCrCard,IsActiveMember,EstimatedSalary)
       st.success('Model has predicted {}'.format(result))
     if st.button("About"):
       st.subheader("Developed by Risheek Mittal")
