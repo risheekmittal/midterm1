@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 st.set_option('deprecation.showfileUploaderEncoding', False)
 # Load the pickled model
-pickle_in = open("/content/drive/My Drive/Risheek.pkl","rb")
+pickle_in = open("Risheek.pkl","rb")
 model=pickle.load(pickle_in)
 dataset= pd.read_csv('/content/drive/My Drive/Risheek Mittal - Classification Dataset1.csv')
 X = dataset.iloc[:,0:14].values
