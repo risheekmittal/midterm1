@@ -14,7 +14,7 @@ X = dataset.iloc[:,1:10].values
 # Taking care of missing data
 #handling missing data (Replacing missing data with the mean value)  
 from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(missing_values= np.NaN, strategy= 'mean', fill_value=None, verbose=1, copy=True)
+imputer = SimpleImputer(missing_values= np.NaN, strategy= 'constant', fill_value='Male', verbose=1, copy=True)
 #Fitting imputer object to the independent variables x.   
 imputer = imputer.fit(X[:,2:3]) 
 #Replacing missing data with the calculated mean value  
@@ -23,7 +23,7 @@ X[:,2:3]= imputer.transform(X[:,2:3])
 # Taking care of missing data
 #handling missing data (Replacing missing data with the mean value)  
 from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(missing_values= np.NaN, strategy= 'constant', fill_value='Male', verbose=1, copy=True)
+imputer = SimpleImputer(missing_values= np.NaN, strategy= 'mean', fill_value=None, verbose=1, copy=True)
 #Fitting imputer object to the independent variables x.   
 imputer = imputer.fit(X[:, 3:9]) 
 #Replacing missing data with the constant value  
